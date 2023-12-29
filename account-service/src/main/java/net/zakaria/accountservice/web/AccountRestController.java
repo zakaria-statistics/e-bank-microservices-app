@@ -22,11 +22,17 @@ public class AccountRestController {
     @GetMapping("/accounts")
     public List<BankAccount> accountList(){
         List<BankAccount> accountList = accountRepository.findAll();
+        accountList.forEach(acc->{
+            acc.setCustomer(customerRestClient.findCustomerById(acc.getCustomerId()));
+        });
         return accountList;
     }
     @GetMapping("/accounts/{id}")
     public BankAccount bankAccountById(@PathVariable String id){
         BankAccount bankAccount = accountRepository.findById(id).get();
+        //Why here and not in the main class? in the main class gives null for customer.
+        Customer customer= customerRestClient.findCustomerById(bankAccount.getCustomerId());
+        bankAccount.setCustomer(customer);
         return bankAccount;
     }
 }

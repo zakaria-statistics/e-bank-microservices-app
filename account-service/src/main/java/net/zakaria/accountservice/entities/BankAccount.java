@@ -1,5 +1,6 @@
 package net.zakaria.accountservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import net.zakaria.accountservice.enums.AccountType;

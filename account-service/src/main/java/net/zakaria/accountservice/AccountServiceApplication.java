@@ -33,13 +33,13 @@ public class AccountServiceApplication {
                                 .type(AccountType.CURRENT_ACCOUNT)
                                 .balance(47376 * Math.random())
                                 .customerId(c.getId())
-                                .customer(c)
+                                .customer(c) // not working dunno?!!
                                 .currency("MAD")
                                 .createAt(LocalDate.now())
                                 .build(),
                         BankAccount.builder()
                                 .accountId(UUID.randomUUID().toString())
-                                .type(AccountType.CURRENT_ACCOUNT)
+                                .type(AccountType.SAVING_ACCOUNT)
                                 .balance(47376 * Math.random())
                                 .customerId(c.getId())
                                 .customer(c)
@@ -48,6 +48,7 @@ public class AccountServiceApplication {
                                 .build()
                 );
                 accountRepository.saveAll(bankAccountList);
+
 
             });
         };
