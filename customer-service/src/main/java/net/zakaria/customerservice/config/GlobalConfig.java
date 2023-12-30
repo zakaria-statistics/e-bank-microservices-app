@@ -9,6 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "global.params")
 @Setter @Getter @AllArgsConstructor @NoArgsConstructor
 public class GlobalConfig {
-    private int n;
     private int m;
+    private int n;
 }
