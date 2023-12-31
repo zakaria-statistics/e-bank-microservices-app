@@ -38,8 +38,10 @@ services:
       - CONFIG_SERVICE_URL=http://enset-ebank-config-service:9999
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8081/actuator/health" ]
-      interval: 10s
-      retries: 4
+      interval: 15s
+      timeout: 10s  # Maximum time allowed for the health check command to complete
+      retries: 6
+      start_period: 30s
     depends_on:
       enset-ebank-config-service:
         condition: service_healthy
@@ -69,3 +71,10 @@ services:
     depends_on:
       enset-ebank-config-service:
         condition: service_healthy
+  front-end-angular:
+    build: ./angular-front-end
+    container_name: front-end-angular
+    ports:
+      - '80:80'
+    expose:
+      - '80'
